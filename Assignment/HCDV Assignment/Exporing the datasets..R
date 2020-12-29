@@ -19,11 +19,22 @@ library(scales)
 install.packages("extrafont")
 library(extrafont)
 
+install.packages("tidyverse")
+library(tidyverse)
+library(readxl)
 mydata = read.csv("Road Safety Data - Casualties 2019.csv")
 
 mydata
 
-car_data = read.csv("Road Safety Data- Vehicles 2019.csv")
+
+excel_sheets("Wales info.xlsx")
+bg <- read_excel("Wales info.xlsx", sheet = 3)
+
+bg 
+
+
+
+wales_info = read.csv("Wales info.xlsx")
 
 car_data
 install.packages("readODS")
@@ -37,10 +48,13 @@ ods_data = read.ods(file = '3275f503-b71f-47db-9b00-81a88c6202b0.ods', sheet = "
 # Regions - All accidents
 ods_data
 
-wales_data =  read.ods(file = 'Wales info.ods', sheet = 2, formulaAsFormula = FALSE)
+wales_data =  read.ods(file = 'Wales info.ods', sheet = 3, formulaAsFormula = FALSE)
 
 wales_data
 
-ggplot(wales_data %>% filter(Local_authority=="Conwy"),aes(x=Light_condition
-                                                 ,y=All_accidents
-                                                 ,colour=Light_condition))
+ggplot(wales_data,aes(x=I
+                                                 ,y=J
+                                                 ,colour=I))
+
+
+qplot(x,y, geom=c("point", "line"), color=I("Red")) 
